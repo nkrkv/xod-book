@@ -52,6 +52,11 @@ Five-node Projects — Practice!
 - Ventilation control
 - VU meter
 - Banana piano -- midi + makey-makey
+- Laser beam radio -- transmitting numbers
+- Railway cross
+- Rally game -- LCD + two buttons
+- Line following robot
+- Interactive artwork
 
 Beyond GPIO
 

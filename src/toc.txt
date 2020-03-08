@@ -1,0 +1,78 @@
+
+Voltage vs Current
+
+- Turn on your first LED
+- Control with button
+
+XOD IDE
+
+- Browser or Desktop
+- Download & Install
+
+Rule the Electricity
+
+- GPIO pins
+- XOD nodes -- four leds
+- Program upload
+- Links! -- buttons to leds
+
+Watches and Tweaks
+
+- Control leds from PC
+- Monitor button state on PC
+- Do we ever need a board -- simulation
+
+Node Manifold
+
+- Quick start hardware nodes -- servo, lcd, hc-sr04, pot, relay
+- Function nodes -- flip-flop, fade, clock, waves
+- Device and their action nodes
+
+Links and Data Types
+
+- Linking rules
+- Built-in data types
+- Pulses versus values
+- Custom data types
+
+Transistor the Great
+
+- Driving big loads with small microcontoller
+- BJT, FET, H-Bridge, power modules
+
+Five-node Projects — Practice!
+
+- Room thermometer / hygrometer -- converting units
+- Battery tester
+- Automatic plant watering
+- Automatic stairs lighting
+- Pomodoro timer
+- Mixer
+- Greenhouse thermostat
+- Ventilation control
+- VU meter
+- Banana piano -- midi + makey-makey
+
+Beyond GPIO
+
+- I²C
+- SPI
+- UART
+- RS232
+- RS485
+- OneWire
+
+Graphics
+Sound
+Analog & Digital
+Signal Filtering
+
+- Debounce
+- Throttle
+- Hystheresis
+
+PID
+Motors
+Internet of Things
+Making new nodes
+Tabular Tests

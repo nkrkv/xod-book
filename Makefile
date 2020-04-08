@@ -1,5 +1,6 @@
 
-BOOK_PDF=build/book.pdf
+BOOK_PDF := build/book.pdf
+ADOC_SRC := $(wildcard src/*.adoc)
 
 .PHONY: book
 book: $(BOOK_PDF)
@@ -8,5 +9,5 @@ book: $(BOOK_PDF)
 install:
 	bundle install
 
-$(BOOK_PDF):
+$(BOOK_PDF): $(ADOC_SRC)
 	bundle exec asciidoctor-pdf --out-file $@ src/book.adoc

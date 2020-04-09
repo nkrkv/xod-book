@@ -12,13 +12,14 @@ ADOC_SRC = $(wildcard $(SRC_DIR)/*.adoc)
 PANDOC_PDF_OPTS = \
 	    --from docbook \
 	    --pdf-engine xelatex \
-	    --variable documentclass=book \
+	    --variable documentclass="scrbook" \
 	    --variable lang="ru-RU" \
 	    --variable geometry="papersize={6in,9in}" \
 	    --variable geometry="margin=2cm" \
-	    --variable mainfont="DejaVu Serif" \
-	    --variable sansfont="DejaVu Sans" \
+	    --variable mainfont="Montserrat" \
+	    --variable sansfont="Montserrat" \
 	    --variable monofont="DejaVu Sans Mono" \
+	    --variable fontsize="9pt" \
 	    --resource-path $(SRC_DIR)
 
 .PHONY: pdf

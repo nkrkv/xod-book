@@ -14,6 +14,7 @@ PANDOC_PDF_OPTS = \
 	    --pdf-engine xelatex \
 	    --variable documentclass=book \
 	    --variable lang="ru-RU" \
+	    --variable geometry="papersize={6in,9in}" \
 	    --variable geometry="margin=2cm" \
 	    --variable mainfont="DejaVu Serif" \
 	    --variable sansfont="DejaVu Sans" \
@@ -28,7 +29,7 @@ tex: $(BOOK_TEX)
 
 .PHONY: clean
 clean:
-	rm -r $(OUT_DIR)
+	rm -rf $(OUT_DIR)
 
 
 $(BOOK_XML): $(ADOC_SRC)

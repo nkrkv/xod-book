@@ -1,0 +1,12 @@
+documentclass: "scrbook"
+lang: "ru-RU"
+
+geometry:
+- "paperwidth=6in"
+- "paperheight=9in"
+- "margin=2cm"
+
+mainfont: "Montserrat"
+sansfont: "Montserrat"
+monofont: "DejaVu Sans Mono"
+fontsize: "9pt"

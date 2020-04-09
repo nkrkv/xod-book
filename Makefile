@@ -6,20 +6,14 @@ BOOK_XML = $(OUT_DIR)/book.xml
 BOOK_TEX = $(OUT_DIR)/book.tex  # For debug
 BOOK_PDF = $(OUT_DIR)/book.pdf
 
+META = metadata.yaml
 ADOC_ENTRY = $(SRC_DIR)/book.adoc
 ADOC_SRC = $(wildcard $(SRC_DIR)/*.adoc)
 
 PANDOC_PDF_OPTS = \
 	    --from docbook \
 	    --pdf-engine xelatex \
-	    --variable documentclass="scrbook" \
-	    --variable lang="ru-RU" \
-	    --variable geometry="papersize={6in,9in}" \
-	    --variable geometry="margin=2cm" \
-	    --variable mainfont="Montserrat" \
-	    --variable sansfont="Montserrat" \
-	    --variable monofont="DejaVu Sans Mono" \
-	    --variable fontsize="9pt" \
+	    --metadata-file $(META) \
 	    --resource-path $(SRC_DIR)
 
 .PHONY: pdf
@@ -33,7 +27,7 @@ clean:
 	rm -rf $(OUT_DIR)
 
 
-$(BOOK_XML): $(ADOC_SRC)
+$(BOOK_XML): $(ADOC_SRC) $(META)
 	asciidoctor \
 	    --backend docbook5 \
 	    --out-file $(BOOK_XML) \

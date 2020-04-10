@@ -59,3 +59,8 @@ $(BOOK_PDF): venv $(BOOK_TEX_DEPS)
 $(BOOK_TEX): venv $(BOOK_TEX_DEPS)
 	. venv/bin/activate; \
 	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)
+
+# fm-radio.01-quickstart.patch.png
+.SECONDEXPANSION:
+%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball
+	screenshot-xodball $< $(word 2,$(subst ., ,$@)) $@ 700

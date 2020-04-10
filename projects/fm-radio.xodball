@@ -1,0 +1,213 @@
+{
+  "name": "fm-radio",
+  "patches": {
+    "@/01-quickstart": {
+      "nodes": {
+        "HySGzMRwL": {
+          "boundLiterals": {
+            "Bk94bMRvI": "89.5"
+          },
+          "id": "HySGzMRwL",
+          "position": {
+            "x": 8,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "@/tea576x-fm-radio-i2c"
+        }
+      },
+      "path": "@/01-quickstart"
+    },
+    "@/02-tweak-freq": {
+      "links": {
+        "BJtwGfCPI": {
+          "id": "BJtwGfCPI",
+          "input": {
+            "nodeId": "Sy8vMfAD8",
+            "pinKey": "HkXK-dGob"
+          },
+          "output": {
+            "nodeId": "By9BMGRPU",
+            "pinKey": "Ska0ZGAwU"
+          }
+        },
+        "H1QDGGCwI": {
+          "id": "H1QDGGCwI",
+          "input": {
+            "nodeId": "r1eDMMAP8",
+            "pinKey": "HkXK-dGob"
+          },
+          "output": {
+            "nodeId": "By9BMGRPU",
+            "pinKey": "ryi9-zAv8"
+          }
+        },
+        "SytUzGRwL": {
+          "id": "SytUzGRwL",
+          "input": {
+            "nodeId": "By9BMGRPU",
+            "pinKey": "Bk94bMRvI"
+          },
+          "output": {
+            "nodeId": "SJGUfGCDU",
+            "pinKey": "ByfGSDjQE"
+          }
+        }
+      },
+      "nodes": {
+        "By9BMGRPU": {
+          "id": "By9BMGRPU",
+          "position": {
+            "x": 6,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "@/tea576x-fm-radio-i2c"
+        },
+        "SJGUfGCDU": {
+          "boundLiterals": {
+            "ByfGSDjQE": "89.5"
+          },
+          "id": "SJGUfGCDU",
+          "position": {
+            "x": 8,
+            "y": 1,
+            "units": "slots"
+          },
+          "size": {
+            "height": 1,
+            "width": 2,
+            "units": "slots"
+          },
+          "type": "xod/debug/tweak-number"
+        },
+        "Sy8vMfAD8": {
+          "id": "Sy8vMfAD8",
+          "position": {
+            "x": 8,
+            "y": 3,
+            "units": "slots"
+          },
+          "type": "xod/debug/watch"
+        },
+        "r1eDMMAP8": {
+          "id": "r1eDMMAP8",
+          "position": {
+            "x": 7,
+            "y": 3,
+            "units": "slots"
+          },
+          "type": "xod/debug/watch"
+        }
+      },
+      "path": "@/02-tweak-freq"
+    },
+    "@/main": {
+      "path": "@/main"
+    },
+    "@/tea576x-fm-radio-i2c": {
+      "nodes": {
+        "BJsG-GCDI": {
+          "id": "BJsG-GCDI",
+          "label": "I2C",
+          "position": {
+            "x": 5,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/i2c/input-i2c"
+        },
+        "Bk94bMRvI": {
+          "boundLiterals": {
+            "__out__": "100"
+          },
+          "id": "Bk94bMRvI",
+          "label": "FREQ",
+          "position": {
+            "x": 9,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-number"
+        },
+        "BkOHbfAvI": {
+          "id": "BkOHbfAvI",
+          "label": "STi",
+          "position": {
+            "x": 11,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-boolean"
+        },
+        "ByGU-GAvI": {
+          "boundLiterals": {
+            "__out__": "True"
+          },
+          "id": "ByGU-GAvI",
+          "label": "ACT",
+          "position": {
+            "x": 15,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-boolean"
+        },
+        "Ska0ZGAwU": {
+          "id": "Ska0ZGAwU",
+          "label": "STo",
+          "position": {
+            "x": 9,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-boolean"
+        },
+        "Sy5_-GCw8": {
+          "id": "Sy5_-GCw8",
+          "label": "MUTE",
+          "position": {
+            "x": 13,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-boolean"
+        },
+        "Sy_mWzCvL": {
+          "boundLiterals": {
+            "__out__": "60h"
+          },
+          "id": "Sy_mWzCvL",
+          "label": "ADDR",
+          "position": {
+            "x": 7,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-byte"
+        },
+        "SytKbM0vL": {
+          "id": "SytKbM0vL",
+          "label": "ACK",
+          "position": {
+            "x": 5,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-pulse"
+        },
+        "ryi9-zAv8": {
+          "id": "ryi9-zAv8",
+          "label": "SIG",
+          "position": {
+            "x": 7,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-number"
+        }
+      },
+      "path": "@/tea576x-fm-radio-i2c"
+    }
+  }
+}

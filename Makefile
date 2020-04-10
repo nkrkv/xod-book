@@ -24,7 +24,7 @@ PANDOC_PDF_OPTS = \
 	    --include-in-header $(HEADER_TEX) \
 	    --include-before-body $(BEFORE_BODY_TEX) \
 	    --filter pandoc-latex-environment \
-	    --resource-path ".:$(SRC_DIR)"
+	    --resource-path ".:clip:$(SRC_DIR)"
 
 .PHONY: pdf
 pdf: $(BOOK_PDF)

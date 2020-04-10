@@ -10,3 +10,6 @@ mainfont: "Montserrat"
 sansfont: "Montserrat"
 monofont: "DejaVu Sans Mono"
 fontsize: "9pt"
+
+pandoc-latex-environment:
+  Note: [note]

@@ -7,6 +7,8 @@ BOOK_TEX = $(OUT_DIR)/book.tex  # For debug
 BOOK_PDF = $(OUT_DIR)/book.pdf
 
 META = metadata.yaml
+BEFORE_BODY_TEX = before-body.tex
+HEADER_TEX = header-includes.tex
 ADOC_ENTRY = $(SRC_DIR)/book.adoc
 ADOC_SRC = $(wildcard $(SRC_DIR)/*.adoc)
 
@@ -14,7 +16,10 @@ PANDOC_PDF_OPTS = \
 	    --from docbook \
 	    --pdf-engine xelatex \
 	    --metadata-file $(META) \
-	    --resource-path $(SRC_DIR)
+	    --include-in-header $(HEADER_TEX) \
+	    --include-before-body $(BEFORE_BODY_TEX) \
+	    --filter pandoc-latex-environment \
+	    --resource-path ".:$(SRC_DIR)"
 
 .PHONY: pdf
 pdf: $(BOOK_PDF)
@@ -33,8 +38,8 @@ $(BOOK_XML): $(ADOC_SRC) $(META)
 	    --out-file $(BOOK_XML) \
 	    $(ADOC_ENTRY)
 
-$(BOOK_PDF): $(BOOK_XML)
+$(BOOK_PDF): $(BOOK_XML) $(BEFORE_BODY_TEX)
 	pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --output $(BOOK_PDF)
 
-$(BOOK_TEX): $(BOOK_XML)
+$(BOOK_TEX): $(BOOK_XML) $(BEFORE_BODY_TEX)
 	pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)

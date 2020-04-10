@@ -17,6 +17,14 @@ BOOK_TEX_DEPS = \
 		$(META_YAML) \
 		$(wildcard latex/*.tex)
 
+BOOK_IMG_DEPS := $(shell grep \
+		--no-filename \
+		--only-matching \
+		--perl-regexp \
+		"image::\K.*.patch.png(?=\[\])" \
+		src/*.adoc \
+		)
+
 PANDOC_PDF_OPTS = \
 	    --from docbook \
 	    --pdf-engine xelatex \
@@ -24,7 +32,7 @@ PANDOC_PDF_OPTS = \
 	    --include-in-header $(HEADER_TEX) \
 	    --include-before-body $(BEFORE_BODY_TEX) \
 	    --filter pandoc-latex-environment \
-	    --resource-path ".:clip:$(SRC_DIR)"
+	    --resource-path ".:build:clip:$(SRC_DIR)"
 
 .PHONY: pdf
 pdf: $(BOOK_PDF)
@@ -52,7 +60,7 @@ $(BOOK_XML): $(BOOK_XML_DEPS)
 	    --out-file $(BOOK_XML) \
 	    $(BOOK_ADOC)
 
-$(BOOK_PDF): venv $(BOOK_TEX_DEPS)
+$(BOOK_PDF): venv $(BOOK_TEX_DEPS) $(BOOK_IMG_DEPS)
 	. venv/bin/activate; \
 	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --output $(BOOK_PDF)
 
@@ -60,7 +68,10 @@ $(BOOK_TEX): venv $(BOOK_TEX_DEPS)
 	. venv/bin/activate; \
 	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)
 
+patchshots:
+	mkdir -p patchshots
+
 # fm-radio.01-quickstart.patch.png
 .SECONDEXPANSION:
-%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball
-	screenshot-xodball $< $(word 2,$(subst ., ,$@)) $@ 700
+patchshots/%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball patchshots
+	screenshot-xodball $< $(word 2,$(subst ., ,$@)) $@

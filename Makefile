@@ -68,10 +68,18 @@ $(BOOK_TEX): venv $(BOOK_TEX_DEPS)
 	. venv/bin/activate; \
 	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)
 
+build/patchshots:
+	mkdir -p build/patchshots
+
 patchshots:
 	mkdir -p patchshots
 
-# fm-radio.01-quickstart.patch.png
 .SECONDEXPANSION:
-patchshots/%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball patchshots
-	screenshot-xodball $< $(word 2,$(subst ., ,$@)) $@
+patchshots/%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball patchshots build/patchshots
+	@# Ex: screenshot-xodball projects/fm-radio.xodball 01-quickstart prefilter.fm-radio.01-quickstart.patch.png
+	screenshot-xodball $< $(word 2,$(subst ., ,$@)) build/$@
+	convert build/$@ \
+	    -channel RGB -negate \
+	    -level "0%,80%" \
+	    -grayscale Rec601Luma \
+	    $@

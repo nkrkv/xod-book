@@ -6,16 +6,21 @@ BOOK_XML = $(OUT_DIR)/book.xml
 BOOK_TEX = $(OUT_DIR)/book.tex  # For debug
 BOOK_PDF = $(OUT_DIR)/book.pdf
 
-META = metadata.yaml
-BEFORE_BODY_TEX = before-body.tex
-HEADER_TEX = header-includes.tex
-ADOC_ENTRY = $(SRC_DIR)/book.adoc
-ADOC_SRC = $(wildcard $(SRC_DIR)/*.adoc)
+META_YAML = latex/metadata.yaml
+BEFORE_BODY_TEX = latex/before-body.tex
+HEADER_TEX = latex/header.tex
+BOOK_ADOC = $(SRC_DIR)/book.adoc
+
+BOOK_XML_DEPS = $(wildcard $(SRC_DIR)/*.adoc)
+BOOK_TEX_DEPS = \
+		$(BOOK_XML) \
+		$(META_YAML) \
+		$(wildcard latex/*.tex)
 
 PANDOC_PDF_OPTS = \
 	    --from docbook \
 	    --pdf-engine xelatex \
-	    --metadata-file $(META) \
+	    --metadata-file $(META_YAML) \
 	    --include-in-header $(HEADER_TEX) \
 	    --include-before-body $(BEFORE_BODY_TEX) \
 	    --filter pandoc-latex-environment \
@@ -41,14 +46,16 @@ venv/bin/activate: requirements.txt
 	  pip install -r requirements.txt
 	touch venv/bin/activate
 
-$(BOOK_XML): $(ADOC_SRC) $(META)
+$(BOOK_XML): $(BOOK_XML_DEPS)
 	asciidoctor \
 	    --backend docbook5 \
 	    --out-file $(BOOK_XML) \
-	    $(ADOC_ENTRY)
+	    $(BOOK_ADOC)
 
-$(BOOK_PDF): $(BOOK_XML) $(BEFORE_BODY_TEX)
-	pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --output $(BOOK_PDF)
+$(BOOK_PDF): venv $(BOOK_TEX_DEPS)
+	. venv/bin/activate; \
+	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --output $(BOOK_PDF)
 
-$(BOOK_TEX): $(BOOK_XML) $(BEFORE_BODY_TEX)
-	pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)
+$(BOOK_TEX): venv $(BOOK_TEX_DEPS)
+	. venv/bin/activate; \
+	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)

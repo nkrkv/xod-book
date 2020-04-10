@@ -31,6 +31,15 @@ tex: $(BOOK_TEX)
 clean:
 	rm -rf $(OUT_DIR)
 
+# Set up Python virtual environment and install required Pandoc filters
+# which are written in Python.
+venv: venv/bin/activate
+
+venv/bin/activate: requirements.txt
+	test -d venv || python3 -m venv venv
+	. venv/bin/activate; \
+	  pip install -r requirements.txt
+	touch venv/bin/activate
 
 $(BOOK_XML): $(ADOC_SRC) $(META)
 	asciidoctor \

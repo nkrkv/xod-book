@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  9pt,
+  fontsize=9pt,
   russian,
 ]{scrbook}
 \usepackage{lmodern}
@@ -75,6 +75,10 @@
 \else
   \usepackage[shorthands=off,main=russian]{babel}
 \fi
+
+% Russian is wide. Perfect paragraps are hardly possible with the given page width.
+% Don’t worry, be happy
+\hbadness=9000
 
 \title{XOD Book}
 \author{Виктор Накоряков

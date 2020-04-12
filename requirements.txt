@@ -1,3 +1,0 @@
-pandoc-latex-environment==1.1.4
-pandocfilters==1.4.2
-pypandoc==1.4

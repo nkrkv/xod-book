@@ -1,48 +1,29 @@
 
-SRC_DIR = src
-OUT_DIR = build
+BOOK_TEX = src/book.tex
+BOOK_PDF = build/book.pdf
 
-BOOK_XML = $(OUT_DIR)/book.xml
-BOOK_TEX = $(OUT_DIR)/book.tex  # For debug
-BOOK_PDF = $(OUT_DIR)/book.pdf
-
-META_YAML = latex/metadata.yaml
-BEFORE_BODY_TEX = latex/before-body.tex
-HEADER_TEX = latex/header.tex
-BOOK_ADOC = $(SRC_DIR)/book.adoc
-
-BOOK_XML_DEPS = $(wildcard $(SRC_DIR)/*.adoc)
-BOOK_TEX_DEPS = \
-		$(BOOK_XML) \
-		$(META_YAML) \
-		$(wildcard latex/*.tex)
-
-BOOK_IMG_DEPS := $(shell grep \
+PATCHSHOT_PNG := $(shell grep \
 		--no-filename \
 		--only-matching \
 		--perl-regexp \
-		"image::\K.*.patch.png(?=\[\])" \
-		src/*.adoc \
+		"\\includegraphics\{\K.*.patch.png(?=\})" \
+		src/*.tex \
 		)
 
-PANDOC_PDF_OPTS = \
-	    --from docbook \
-	    --pdf-engine xelatex \
-	    --metadata-file $(META_YAML) \
-	    --include-in-header $(HEADER_TEX) \
-	    --include-before-body $(BEFORE_BODY_TEX) \
-	    --filter pandoc-latex-environment \
-	    --resource-path ".:build:clip:$(SRC_DIR)"
+SKETCHES_SVG := $(shell find sketches -name "*.svg")
+SKETCHES_PDF := $(SKETCHES_SVG:%.svg=%.pdf)
+
+BOOK_PDF_DEPS = $(wildcard src/*.tex) \
+		$(PATCHSHOT_PNG) \
+		$(SKETCHES_PDF)
+
 
 .PHONY: pdf
 pdf: $(BOOK_PDF)
 
-.PHONY: tex
-tex: $(BOOK_TEX)
-
 .PHONY: clean
 clean:
-	rm -rf $(OUT_DIR)
+	rm -f $(BOOK_PDF)
 
 # Set up Python virtual environment and install required Pandoc filters
 # which are written in Python.
@@ -54,25 +35,28 @@ venv/bin/activate: requirements.txt
 	  pip install -r requirements.txt
 	touch venv/bin/activate
 
-$(BOOK_XML): $(BOOK_XML_DEPS)
-	asciidoctor \
-	    --backend docbook5 \
-	    --out-file $(BOOK_XML) \
-	    $(BOOK_ADOC)
-
-$(BOOK_PDF): venv $(BOOK_TEX_DEPS) $(BOOK_IMG_DEPS)
-	. venv/bin/activate; \
-	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --output $(BOOK_PDF)
-
-$(BOOK_TEX): venv $(BOOK_TEX_DEPS)
-	. venv/bin/activate; \
-	  pandoc $(PANDOC_PDF_OPTS) $(BOOK_XML) --standalone --output $(BOOK_TEX)
+$(BOOK_PDF): $(BOOK_PDF_DEPS)
+	@# build/src is required to mimic the original structure (./src) which
+	@# is necessary for `\include` to work in our case of out-of-source build
+	@mkdir -p build/src  
+	xelatex --output-directory build --interaction nonstopmode $(BOOK_TEX)
 
 build/patchshots:
 	mkdir -p build/patchshots
 
 patchshots:
 	mkdir -p patchshots
+
+sketches/%.pdf: sketches/%.svg
+	@echo "Converting sketch SVG to PDF..."
+	@mkdir -p build/sketches
+	rsvg-convert \
+	    --format pdf \
+	    --keep-aspect-ratio \
+	    --dpi-x 96 \
+	    --dpi-y 96 \
+	    --output $@ \
+	    $<
 
 .SECONDEXPANSION:
 patchshots/%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball patchshots build/patchshots

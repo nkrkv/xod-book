@@ -23,7 +23,7 @@ pdf: $(BOOK_PDF)
 
 .PHONY: clean
 clean:
-	rm -f $(BOOK_PDF)
+	rm -rf build
 
 # Set up Python virtual environment and install required Pandoc filters
 # which are written in Python.
@@ -38,14 +38,8 @@ venv/bin/activate: requirements.txt
 $(BOOK_PDF): $(BOOK_PDF_DEPS)
 	@# build/src is required to mimic the original structure (./src) which
 	@# is necessary for `\include` to work in our case of out-of-source build
-	@mkdir -p build/src  
+	@mkdir -p build/src
 	xelatex --output-directory build --interaction nonstopmode $(BOOK_TEX)
-
-build/patchshots:
-	mkdir -p build/patchshots
-
-patchshots:
-	mkdir -p patchshots
 
 sketches/%.pdf: sketches/%.svg
 	@echo "Converting sketch SVG to PDF..."
@@ -58,11 +52,22 @@ sketches/%.pdf: sketches/%.svg
 	    --output $@ \
 	    $<
 
+# The actual list of required patch screenshots is extracted with grep into
+# $(PATCHSHOT_PNG). An unfortunate feature is that `screenshot-xodball`
+# requires project file name *and* a patch name. Both are encoded in the
+# output filename. For example: `fm-radio.01-quickstart.patch.png`
+# requires a screenshot from project `fm-radio.xodball` → patch
+# `01-quickstart`. Since `make` does not support multiple template options,
+# the trick with .SECONDEXPANSION is used.
+# See: https://stackoverflow.com/questions/39151235/gnu-make-with-multiple-in-pattern-rule
 .SECONDEXPANSION:
-patchshots/%.patch.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball patchshots build/patchshots
+projects/%.nofx.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball
 	@# Ex: screenshot-xodball projects/fm-radio.xodball 01-quickstart prefilter.fm-radio.01-quickstart.patch.png
-	screenshot-xodball $< $(word 2,$(subst ., ,$@)) build/$@
-	convert build/$@ \
+	screenshot-xodball $< $(word 2,$(subst ., ,$@)) $@
+
+projects/%.patch.png: projects/%.nofx.png
+	@echo "Applying grayscale filter to patch screenshot..."
+	convert $< \
 	    -channel RGB -negate \
 	    -level "0%,80%" \
 	    -grayscale Rec601Luma \

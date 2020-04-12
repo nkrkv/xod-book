@@ -3,3 +3,4 @@ build
 *.log
 patchshots
 sketches/*.pdf
+projects/*.png

@@ -6,7 +6,7 @@ PATCHSHOT_PNG := $(shell grep \
 		--no-filename \
 		--only-matching \
 		--perl-regexp \
-		"\\includegraphics\{\K.*.patch.png(?=\})" \
+		"\\includegraphics\{\Kprojects\/.*\.png(?=\})" \
 		src/*.tex \
 		)
 
@@ -61,11 +61,11 @@ sketches/%.pdf: sketches/%.svg
 # the trick with .SECONDEXPANSION is used.
 # See: https://stackoverflow.com/questions/39151235/gnu-make-with-multiple-in-pattern-rule
 .SECONDEXPANSION:
-projects/%.nofx.png: projects/$$(word 1,$$(subst ., ,$$*)).xodball
-	@# Ex: screenshot-xodball projects/fm-radio.xodball 01-quickstart prefilter.fm-radio.01-quickstart.patch.png
-	screenshot-xodball $< $(word 2,$(subst ., ,$@)) $@
+projects/%.nofx.png: projects/$$(word 1,$$(subst --, ,$$*)).xodball
+	@# Ex: screenshot-xodball projects/fm-radio.xodball 01-quickstart fm-radio--01-quickstart.nofx.png
+	screenshot-xodball $< $(word 2,$(subst --, ,$*)) $@
 
-projects/%.patch.png: projects/%.nofx.png
+projects/%.png: projects/%.nofx.png
 	@echo "Applying grayscale filter to patch screenshot..."
 	convert $< \
 	    -channel RGB -negate \

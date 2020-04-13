@@ -39,8 +39,7 @@ $(BOOK_PDF): $(BOOK_PDF_DEPS)
 	@# build/src is required to mimic the original structure (./src) which
 	@# is necessary for `\include` to work in our case of out-of-source build
 	@mkdir -p build/src
-	xelatex --output-directory build --interaction nonstopmode $(BOOK_TEX)
-	xelatex --output-directory build --interaction nonstopmode $(BOOK_TEX)
+	latexmk -xelatex -output-directory=build -interaction=nonstopmode $(BOOK_TEX)
 
 sketches/%.pdf: sketches/%.svg
 	@echo "Converting sketch SVG to PDF..."

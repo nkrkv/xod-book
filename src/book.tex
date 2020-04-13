@@ -65,7 +65,7 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{0} % Chapters get numbers, sections are not
 % For amonitions
 \usepackage{framed,marginnote}
 \ifxetex
@@ -80,15 +80,6 @@
 % Don’t worry, be happy
 \hbadness=9000
 
-\title{XOD Book}
-\author{Виктор Накоряков
-\href{mailto:victor@xod.io}{\nolinkurl{victor@xod.io}}}
-\date{2020-04-12}
-
-\begin{document}
-\frontmatter
-\maketitle
-
 \colorlet{shadecolor}{gray!10}
 
 \newenvironment{Note}
@@ -99,18 +90,24 @@
   {\begin{shaded}\marginnote{\fbox{!!}}}
   {\end{shaded}}
 
+\title{XOD Book}
+\author{Виктор Накоряков
+\href{mailto:victor@xod.io}{\nolinkurl{victor@xod.io}}}
+\date{2020-04-12}
+
+\begin{document}
+\frontmatter
+\maketitle
 \mainmatter
-\chapter{}
+\tableofcontents
 
-Фубар
-
-\chapter{Введение}
+\addchap{Введение}
 
 Барбаз
 
 \include{src/p05-fm-radio}
 
-\chapter{Заключение}
+\addchap{Заключение}
 
 Ой, всё
 

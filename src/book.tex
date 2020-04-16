@@ -90,6 +90,21 @@
   {\begin{shaded}\marginnote{\fbox{!!}}}
   {\end{shaded}}
 
+% LCD character box commands. Put a char in monospaced font into a box, add a strut to make heights equal
+\let\lcdchar\relax
+\DeclareRobustCommand{\lcdchar}[1]{%
+  \texttt{%
+    \framebox[\baselineskip]{%
+      \raisebox{0pt}[0.5\baselineskip][0pt]{\strut#1}%
+    }%
+  }\,%
+}
+\makeatletter
+\newcommand{\lcd}[1]{%
+  \@tfor\next:=#1\do{\lcdchar{\next}}%
+}
+\makeatother
+
 \title{XOD Book}
 \author{Виктор Накоряков
 \href{mailto:victor@xod.io}{\nolinkurl{victor@xod.io}}}

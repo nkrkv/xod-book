@@ -8,6 +8,7 @@
 ]{scrbook}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
+\usepackage{imakeidx}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
@@ -110,6 +111,9 @@
 \href{mailto:victor@xod.io}{\nolinkurl{victor@xod.io}}}
 \date{2020-04-12}
 
+\makeindex[title={Предметный указатель}]
+\makeindex[name=nodes,title={Нодовый указатель},columns=2]
+
 \begin{document}
 \frontmatter
 \maketitle
@@ -125,6 +129,9 @@
 \addchap{Заключение}
 
 Ой, всё
+
+\printindex
+\printindex[nodes]
 
 \backmatter
 \end{document}

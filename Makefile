@@ -18,6 +18,9 @@ SKETCHES_PDF := $(SKETCHES_SVG:%.svg=%.pdf)
 EMOJI_SVG := $(shell find emoji -name "*.svg")
 EMOJI_PDF := $(EMOJI_SVG:%.svg=%.pdf)
 
+PLOTS_PY := $(shell find plots -name "*.py")
+PLOTS_PDF := $(PLOTS_PY:%.py=%.pdf)
+
 BOOK_PDF_DEPS = $(wildcard src/*.tex) \
 		$(PATCHSHOT_PNG) \
 		$(SKETCHES_PDF) \
@@ -56,6 +59,11 @@ $(BOOK_PDF): $(BOOK_PDF_DEPS)
 	    --dpi-y 96 \
 	    --output $@ \
 	    $<
+
+%.pdf: %.py venv
+	@echo "Rendering generative matplotlib plot to PDF..."
+	. venv/bin/activate; \
+	  python $< $@
 
 # The actual list of required patch screenshots is extracted with grep into
 # $(PATCHSHOT_PNG). An unfortunate feature is that `screenshot-xodball`

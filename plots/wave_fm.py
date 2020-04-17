@@ -9,7 +9,7 @@ def main():
         wave_carry = np.sin(time * 2)
         wave_fm = np.sin(time + 6 * wave_info)
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(8.0, 3.0), linewidth=0.25)
 
         subplot1 = fig.add_subplot(3, 1, 1)
         subplot1.axis('off')
@@ -25,7 +25,7 @@ def main():
 
         fig.tight_layout()
 
-    fig.savefig(sys.argv[1], bbox_inches='tight', pad_inches=-0.05)
+    fig.savefig(sys.argv[1])
 
 if __name__ == '__main__':
     main()

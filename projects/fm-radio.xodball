@@ -102,8 +102,331 @@
       },
       "path": "@/02-tweak-freq"
     },
+    "@/03-quad-encoder": {
+      "links": {
+        "HJxKsYD_L": {
+          "id": "HJxKsYD_L",
+          "input": {
+            "nodeId": "ryh_jYDu8",
+            "pinKey": "ryGOiYw_U"
+          },
+          "output": {
+            "nodeId": "By9uiKDOU",
+            "pinKey": "BJiHsFPOI"
+          }
+        },
+        "rJfKiKvdL": {
+          "id": "rJfKiKvdL",
+          "input": {
+            "nodeId": "B11FoKDdL",
+            "pinKey": "ryGOiYw_U"
+          },
+          "output": {
+            "nodeId": "By9uiKDOU",
+            "pinKey": "Bk-8oYv_8"
+          }
+        }
+      },
+      "nodes": {
+        "B11FoKDdL": {
+          "id": "B11FoKDdL",
+          "position": {
+            "x": 3,
+            "y": 1,
+            "units": "slots"
+          },
+          "type": "@/watch-pulse"
+        },
+        "By9uiKDOU": {
+          "boundLiterals": {
+            "Bk8EoFDO8": "D4",
+            "SJgSjFvdU": "D5"
+          },
+          "id": "By9uiKDOU",
+          "position": {
+            "x": 2,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "@/quad-encoder"
+        },
+        "ryh_jYDu8": {
+          "id": "ryh_jYDu8",
+          "position": {
+            "x": 2,
+            "y": 1,
+            "units": "slots"
+          },
+          "type": "@/watch-pulse"
+        }
+      },
+      "path": "@/03-quad-encoder"
+    },
+    "@/04-freq-control": {
+      "links": {
+        "Bkbj6tPuL": {
+          "id": "Bkbj6tPuL",
+          "input": {
+            "nodeId": "ByAcaKDuL",
+            "pinKey": "By9GTtDOL"
+          },
+          "output": {
+            "nodeId": "BkwhhYD_8",
+            "pinKey": "BJiHsFPOI"
+          }
+        },
+        "Bkfly5wdL": {
+          "id": "Bkfly5wdL",
+          "input": {
+            "nodeId": "Hkkgk9DuL",
+            "pinKey": "HkXK-dGob"
+          },
+          "output": {
+            "nodeId": "ByAcaKDuL",
+            "pinKey": "SkrvaFvOU"
+          }
+        },
+        "SyChaFDuI": {
+          "id": "SyChaFDuI",
+          "input": {
+            "nodeId": "B1G3hFv_8",
+            "pinKey": "Bk94bMRvI"
+          },
+          "output": {
+            "nodeId": "ByAcaKDuL",
+            "pinKey": "SkrvaFvOU"
+          }
+        },
+        "r1QsTFwuU": {
+          "id": "r1QsTFwuU",
+          "input": {
+            "nodeId": "ByAcaKDuL",
+            "pinKey": "r1fmaFwuI"
+          },
+          "output": {
+            "nodeId": "BkwhhYD_8",
+            "pinKey": "Bk-8oYv_8"
+          }
+        }
+      },
+      "nodes": {
+        "B1G3hFv_8": {
+          "boundLiterals": {
+            "Bk94bMRvI": "89.5"
+          },
+          "id": "B1G3hFv_8",
+          "position": {
+            "x": -3,
+            "y": 3,
+            "units": "slots"
+          },
+          "type": "@/tea576x-fm-radio-i2c"
+        },
+        "BkwhhYD_8": {
+          "id": "BkwhhYD_8",
+          "position": {
+            "x": 2,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "@/quad-encoder"
+        },
+        "ByAcaKDuL": {
+          "boundLiterals": {
+            "HyAQ6KDd8": "100.0",
+            "SJuxaFwuL": "108.0",
+            "SyPp3YwdI": "0.1",
+            "r1SgTtw_I": "88.0"
+          },
+          "id": "ByAcaKDuL",
+          "position": {
+            "x": -1,
+            "y": 1,
+            "units": "slots"
+          },
+          "type": "@/count-bar"
+        },
+        "Hkkgk9DuL": {
+          "id": "Hkkgk9DuL",
+          "position": {
+            "x": 0,
+            "y": 2,
+            "units": "slots"
+          },
+          "size": {
+            "height": 1,
+            "width": 2,
+            "units": "slots"
+          },
+          "type": "xod/debug/watch"
+        }
+      },
+      "path": "@/04-freq-control"
+    },
+    "@/count-bar": {
+      "nodes": {
+        "BkgdpFPdU": {
+          "id": "BkgdpFPdU",
+          "label": "OVF",
+          "position": {
+            "x": 3,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-pulse"
+        },
+        "By9GTtDOL": {
+          "id": "By9GTtDOL",
+          "label": "INC",
+          "position": {
+            "x": 5,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-pulse"
+        },
+        "HJuuTtDuU": {
+          "id": "HJuuTtDuU",
+          "label": "UVF",
+          "position": {
+            "x": 4,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-pulse"
+        },
+        "HyAQ6KDd8": {
+          "id": "HyAQ6KDd8",
+          "label": "INIT",
+          "position": {
+            "x": 7,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-number"
+        },
+        "S1w4atwuL": {
+          "boundLiterals": {
+            "__out__": "On Boot"
+          },
+          "id": "S1w4atwuL",
+          "label": "RST",
+          "position": {
+            "x": 8,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-pulse"
+        },
+        "SJuxaFwuL": {
+          "boundLiterals": {
+            "__out__": "+Inf"
+          },
+          "id": "SJuxaFwuL",
+          "label": "MAX",
+          "position": {
+            "x": 4,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-number"
+        },
+        "SkrvaFvOU": {
+          "id": "SkrvaFvOU",
+          "label": "OUT",
+          "position": {
+            "x": 2,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-number"
+        },
+        "SyPp3YwdI": {
+          "boundLiterals": {
+            "__out__": "1"
+          },
+          "id": "SyPp3YwdI",
+          "label": "STEP",
+          "position": {
+            "x": 2,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-number"
+        },
+        "r1SgTtw_I": {
+          "boundLiterals": {
+            "__out__": "-Inf"
+          },
+          "id": "r1SgTtw_I",
+          "label": "MIN",
+          "position": {
+            "x": 3,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-number"
+        },
+        "r1fmaFwuI": {
+          "id": "r1fmaFwuI",
+          "label": "DEC",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-pulse"
+        }
+      },
+      "path": "@/count-bar"
+    },
     "@/main": {
       "path": "@/main"
+    },
+    "@/quad-encoder": {
+      "nodes": {
+        "BJiHsFPOI": {
+          "id": "BJiHsFPOI",
+          "label": "INC",
+          "position": {
+            "x": 3,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-pulse"
+        },
+        "Bk-8oYv_8": {
+          "id": "Bk-8oYv_8",
+          "label": "DEC",
+          "position": {
+            "x": 5,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/output-pulse"
+        },
+        "Bk8EoFDO8": {
+          "id": "Bk8EoFDO8",
+          "label": "PA",
+          "position": {
+            "x": 3,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-port"
+        },
+        "SJgSjFvdU": {
+          "id": "SJgSjFvdU",
+          "label": "PB",
+          "position": {
+            "x": 5,
+            "y": 0,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-port"
+        }
+      },
+      "path": "@/quad-encoder"
     },
     "@/tea576x-fm-radio-i2c": {
       "nodes": {
@@ -208,6 +531,20 @@
         }
       },
       "path": "@/tea576x-fm-radio-i2c"
+    },
+    "@/watch-pulse": {
+      "nodes": {
+        "ryGOiYw_U": {
+          "id": "ryGOiYw_U",
+          "position": {
+            "x": 4,
+            "y": 1,
+            "units": "slots"
+          },
+          "type": "xod/patch-nodes/input-pulse"
+        }
+      },
+      "path": "@/watch-pulse"
     }
   }
 }

@@ -1,0 +1,8 @@
+\usepackage{xstring}
+
+\newcommand{\codemoji}[1]{%
+  \IfStrEqCase{#1}{%
+    {innocent}{😇}%
+    {smiling_imp}{😈}%
+  }[\textbf{??}]
+}

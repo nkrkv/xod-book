@@ -1,4 +1,6 @@
 
+export TEXINPUTS:=.:./src:./texmf:$(TEXINPUTS)
+
 BOOK_TEX = src/book.tex
 BOOK_PDF = build/book.pdf
 
@@ -13,10 +15,13 @@ PATCHSHOT_PNG := $(shell grep \
 SKETCHES_SVG := $(shell find sketches -name "*.svg")
 SKETCHES_PDF := $(SKETCHES_SVG:%.svg=%.pdf)
 
+EMOJI_SVG := $(shell find emoji -name "*.svg")
+EMOJI_PDF := $(EMOJI_SVG:%.svg=%.pdf)
+
 BOOK_PDF_DEPS = $(wildcard src/*.tex) \
 		$(PATCHSHOT_PNG) \
-		$(SKETCHES_PDF)
-
+		$(SKETCHES_PDF) \
+		$(EMOJI_PDF)
 
 .PHONY: pdf
 pdf: $(BOOK_PDF)
@@ -41,7 +46,7 @@ $(BOOK_PDF): $(BOOK_PDF_DEPS)
 	@mkdir -p build/src
 	latexmk -xelatex -output-directory=build -interaction=nonstopmode $(BOOK_TEX)
 
-sketches/%.pdf: sketches/%.svg
+%.pdf: %.svg
 	@echo "Converting sketch SVG to PDF..."
 	@mkdir -p build/sketches
 	rsvg-convert \

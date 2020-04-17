@@ -263,6 +263,180 @@
       },
       "path": "@/04-freq-control"
     },
+    "@/05-text-lcd": {
+      "links": {
+        "HJQdgqDdU": {
+          "id": "HJQdgqDdU",
+          "input": {
+            "nodeId": "rk3Le5DOI",
+            "pinKey": "rJgnw0417B"
+          },
+          "output": {
+            "nodeId": "HkZ_l5D_U",
+            "pinKey": "H1wh06BEV"
+          }
+        },
+        "rJAvxqDdL": {
+          "id": "rJAvxqDdL",
+          "input": {
+            "nodeId": "rk3Le5DOI",
+            "pinKey": "BJ3DAE1QS"
+          },
+          "output": {
+            "nodeId": "Sk2DgqDuI",
+            "pinKey": "H1wh06BEV"
+          }
+        }
+      },
+      "nodes": {
+        "HkZ_l5D_U": {
+          "boundLiterals": {
+            "H1wh06BEV": "\"Mr. Popov\""
+          },
+          "id": "HkZ_l5D_U",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "units": "slots"
+          },
+          "size": {
+            "height": 1,
+            "width": 2,
+            "units": "slots"
+          },
+          "type": "xod/debug/tweak-string-16"
+        },
+        "Sk2DgqDuI": {
+          "boundLiterals": {
+            "H1wh06BEV": "\"Hello,\""
+          },
+          "id": "Sk2DgqDuI",
+          "position": {
+            "x": 5,
+            "y": -1,
+            "units": "slots"
+          },
+          "size": {
+            "height": 1,
+            "width": 3,
+            "units": "slots"
+          },
+          "type": "xod/debug/tweak-string-16"
+        },
+        "rk3Le5DOI": {
+          "boundLiterals": {
+            "rkedCVkXS": "38h"
+          },
+          "id": "rk3Le5DOI",
+          "position": {
+            "x": 3,
+            "y": 1,
+            "units": "slots"
+          },
+          "type": "xod-dev/text-lcd/text-lcd-i2c-16x2"
+        }
+      },
+      "path": "@/05-text-lcd"
+    },
+    "@/06-lcd-freq": {
+      "links": {
+        "HJ7zcz9PdL": {
+          "id": "HJ7zcz9PdL",
+          "input": {
+            "nodeId": "H1bz9zqDu8",
+            "pinKey": "By9GTtDOL"
+          },
+          "output": {
+            "nodeId": "SJlG5G9DuL",
+            "pinKey": "BJiHsFPOI"
+          }
+        },
+        "HkSf9f9vuL": {
+          "id": "HkSf9f9vuL",
+          "input": {
+            "nodeId": "Syfqz9vOU",
+            "pinKey": "Bk94bMRvI"
+          },
+          "output": {
+            "nodeId": "H1bz9zqDu8",
+            "pinKey": "SkrvaFvOU"
+          }
+        },
+        "r1rof9DuU": {
+          "id": "r1rof9DuU",
+          "input": {
+            "nodeId": "SJhcG9vdU",
+            "pinKey": "BJ3DAE1QS"
+          },
+          "output": {
+            "nodeId": "H1bz9zqDu8",
+            "pinKey": "SkrvaFvOU"
+          }
+        },
+        "rkNfqGcvOI": {
+          "id": "rkNfqGcvOI",
+          "input": {
+            "nodeId": "H1bz9zqDu8",
+            "pinKey": "r1fmaFwuI"
+          },
+          "output": {
+            "nodeId": "SJlG5G9DuL",
+            "pinKey": "Bk-8oYv_8"
+          }
+        }
+      },
+      "nodes": {
+        "H1bz9zqDu8": {
+          "boundLiterals": {
+            "HyAQ6KDd8": "100.0",
+            "SJuxaFwuL": "108.0",
+            "SyPp3YwdI": "0.1",
+            "r1SgTtw_I": "88.0"
+          },
+          "id": "H1bz9zqDu8",
+          "position": {
+            "x": 5,
+            "y": 2,
+            "units": "slots"
+          },
+          "type": "@/count-bar"
+        },
+        "SJhcG9vdU": {
+          "boundLiterals": {
+            "rkedCVkXS": "38h"
+          },
+          "id": "SJhcG9vdU",
+          "position": {
+            "x": 7,
+            "y": 4,
+            "units": "slots"
+          },
+          "type": "xod-dev/text-lcd/text-lcd-i2c-16x2"
+        },
+        "SJlG5G9DuL": {
+          "id": "SJlG5G9DuL",
+          "position": {
+            "x": 8,
+            "y": 1,
+            "units": "slots"
+          },
+          "type": "@/quad-encoder"
+        },
+        "Syfqz9vOU": {
+          "boundLiterals": {
+            "Bk94bMRvI": "89.5"
+          },
+          "id": "Syfqz9vOU",
+          "position": {
+            "x": 0,
+            "y": 4,
+            "units": "slots"
+          },
+          "type": "@/tea576x-fm-radio-i2c"
+        }
+      },
+      "path": "@/06-lcd-freq"
+    },
     "@/count-bar": {
       "nodes": {
         "BkgdpFPdU": {

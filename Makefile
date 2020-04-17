@@ -24,6 +24,7 @@ PLOTS_PDF := $(PLOTS_PY:%.py=%.pdf)
 BOOK_PDF_DEPS = $(wildcard src/*.tex) \
 		$(PATCHSHOT_PNG) \
 		$(SKETCHES_PDF) \
+		$(PLOTS_PDF) \
 		$(EMOJI_PDF)
 
 .PHONY: pdf

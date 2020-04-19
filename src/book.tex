@@ -5,6 +5,7 @@
 \documentclass[
   fontsize=9pt,
   russian,
+  footsepline,
 ]{scrbook}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -70,6 +71,13 @@
   ignorefoot,
   ignorehead
 ]{geometry}
+
+% Header & Footer
+\usepackage{scrlayer-scrpage}
+\ohead{} % clear the outer head
+\ofoot{\pagemark} % the pagenumber in the outer of the foot
+\ifoot{\headmark} % the pagenumber in the outer of the foot
+
 \usepackage{graphicx}
 \graphicspath{{images/}{./}}
 \makeatletter

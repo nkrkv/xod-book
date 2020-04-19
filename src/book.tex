@@ -48,7 +48,28 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage[paperwidth=6in,paperheight=9in,margin=2cm]{geometry}
+% The basic idea behind page and text matter dimension selection is that we
+% have to use tall proportions to fit tall XOD patches. Nevertheless, there are
+% rules to follow: outer margin should be 2× inner, bottom margin should be 2×
+% top margin. We don’t include header and footer into the body to make it as
+% tall as possible:
+%
+% Page width is ~6.5"
+% Page aspect is golden ratio (1.618)
+% Inner margin is 1/9 width
+% Outter margin is 2× Inner margin
+% Top margin is 1/12 height
+% Bottom margin is 2× top margin
+\usepackage[
+  paperwidth=16.5cm,
+  paperheight=26.7cm,
+  inner=1.83cm,
+  outer=3.66cm,
+  top=2.2cm,
+  bottom=4.4cm,
+  ignorefoot,
+  ignorehead
+]{geometry}
 \usepackage{graphicx}
 \graphicspath{{images/}{./}}
 \makeatletter

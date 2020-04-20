@@ -5,7 +5,6 @@
 \documentclass[
   fontsize=9pt,
   russian,
-  footsepline,
 ]{scrbook}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -51,23 +50,24 @@
 \urlstyle{same} % disable monospaced font for URLs
 % The basic idea behind page and text matter dimension selection is that we
 % have to use tall proportions to fit tall XOD patches. Nevertheless, there are
-% rules to follow: outer margin should be 2× inner, bottom margin should be 2×
-% top margin. We don’t include header and footer into the body to make it as
-% tall as possible:
+% rules to follow: outer margin should be 2× inner. Bottom margin should be 2×
+% top margin... Should be... We sacrifice the Jan Tschichold rules here and
+% make bottom and top margins the same to get more height. We don’t include
+% header and footer into the body to make it as tall as possible:
 %
 % Page width is ~6.5"
 % Page aspect is golden ratio (1.618)
 % Inner margin is 1/9 width
 % Outter margin is 2× Inner margin
-% Top margin is 1/12 height
-% Bottom margin is 2× top margin
+% Top margin is 1/9 height
+% Bottom margin equals top margin
 \usepackage[
   paperwidth=16.5cm,
   paperheight=26.7cm,
   inner=1.83cm,
   outer=3.66cm,
-  top=2.2cm,
-  bottom=4.4cm,
+  top=2.9cm,
+  bottom=2.9cm,
   ignorefoot,
   ignorehead
 ]{geometry}
@@ -75,8 +75,9 @@
 % Header & Footer
 \usepackage{scrlayer-scrpage}
 \ohead{} % clear the outer head
+% TODO: push page number out to be exactly on page diagonal
 \ofoot{\pagemark} % the pagenumber in the outer of the foot
-\ifoot{\headmark} % the pagenumber in the outer of the foot
+\cfoot{\headmark} % chapter / section in the center of the foot
 
 \usepackage{graphicx}
 \graphicspath{{images/}{./}}

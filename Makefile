@@ -12,6 +12,9 @@ PATCHSHOT_PNG := $(shell grep \
 		src/*.tex \
 		)
 
+IMAGES_SVG := $(shell find images -name "*.svg")
+IMAGES_PDF := $(IMAGES_SVG:%.svg=%.pdf)
+
 SKETCHES_SVG := $(shell find sketches -name "*.svg")
 SKETCHES_PDF := $(SKETCHES_SVG:%.svg=%.pdf)
 
@@ -23,6 +26,7 @@ PLOTS_PDF := $(PLOTS_PY:%.py=%.pdf)
 
 BOOK_PDF_DEPS = $(wildcard src/*.tex) \
 		$(PATCHSHOT_PNG) \
+		$(IMAGES_PDF) \
 		$(SKETCHES_PDF) \
 		$(PLOTS_PDF) \
 		$(EMOJI_PDF)

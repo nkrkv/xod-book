@@ -7,3 +7,4 @@ projects/*.png
 emoji/*.pdf
 plots/*.pdf
 images/*.pdf
+venv/
